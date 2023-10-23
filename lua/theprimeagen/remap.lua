@@ -21,6 +21,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")  -- Map <C-c> in insert mode to exit inser
 
 vim.keymap.set("n", "Q", "<nop>")  -- Disable 'Q' in normal mode
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)  -- Format code in normal mode
+vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]])
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")  -- Go to the next compiler error and center cursor in normal mode
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")  -- Go to the previous compiler error and center cursor in normal mode
