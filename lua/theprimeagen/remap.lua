@@ -7,6 +7,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")  -- Move line(s) up in visual mode
 vim.keymap.set("n", "J", "mzJ`z")  -- Join lines and restore cursor position in normal mode
 vim.keymap.set("n", "<C-d>", "<C-d>zz")  -- Scroll down half a page and center cursor in normal mode
 vim.keymap.set("n", "<C-u>", "<C-u>zz")  -- Scroll up half a page and center cursor in normal mode
+vim.keymap.set("n", ",", "jzz")
+vim.keymap.set("n", ".", "kzz")
+
+
 vim.keymap.set("n", "n", "nzzzv")  -- Search next and center cursor in normal mode
 vim.keymap.set("n", "N", "Nzzzv")  -- Search previous and center cursor in normal mode
 
