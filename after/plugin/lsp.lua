@@ -78,19 +78,6 @@ vim.diagnostic.config({
 		float = true,
 })
 
-
--- Add format_on_save
-lsp.format_on_save({
-  format_opts = {
-    async = false,
-    timeout_ms = 10000,
-  },
-  servers = {
-    ['tsserver'] = {'javascript', 'typescript'},
-    ['rust_analyzer'] = {'rust'},
-  }
-})
-
 -- Set Lua settings for inline hinting
 lspconfig.lua_ls.setup({
   on_attach = function(client, bufnr)
