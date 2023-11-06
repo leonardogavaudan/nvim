@@ -50,3 +50,4 @@ vim.keymap.set('n', '<leader>ph', function()
 
 	vim.cmd('let @* = "' .. complete_rel_path .. '"')
 end)
+
