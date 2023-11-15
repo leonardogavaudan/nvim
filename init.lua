@@ -1,1 +1,2 @@
-require("theprimeagen")
+require('plugins')
+require('personal')
