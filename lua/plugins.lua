@@ -34,6 +34,7 @@ packer.startup(function(use)
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 	use("nvim-treesitter/nvim-treesitter-context");
+	use('nvim-treesitter/nvim-treesitter-textobjects')
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
