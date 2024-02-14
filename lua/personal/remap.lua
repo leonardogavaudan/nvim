@@ -7,11 +7,13 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/the
 vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)                                      -- Source current file in normal mode
 
 -- Cursor movement and window scrolling
-vim.keymap.set("n", "J", "mzJ`z")       -- Join lines and restore cursor position in normal mode
-vim.keymap.set("n", "<C-d>", "<C-d>zz") -- Scroll down half a page and center cursor in normal mode
-vim.keymap.set("n", "<C-u>", "<C-u>zz") -- Scroll up half a page and center cursor in normal mode
-vim.keymap.set("n", ",", "jzz")         -- Move cursor down one line and center in normal mode
-vim.keymap.set("n", ".", "kzz")         -- Move cursor up one line and center in normal mode
+vim.keymap.set("n", "J", "mzJ`z")                    -- Join lines and restore cursor position in normal mode
+vim.keymap.set("n", "<C-d>", "<C-d>zz")              -- Scroll down half a page and center cursor in normal mode
+vim.keymap.set("n", "<C-u>", "<C-u>zz")              -- Scroll up half a page and center cursor in normal mode
+vim.keymap.set("n", ">", "jzz")                      -- Move cursor down one line and center in normal mode
+vim.keymap.set("n", "<", "kzz")                      -- Move cursor up one line and center in normal mode
+vim.keymap.set("n", ".", "<C-y>", { silent = true }) -- Scroll up one line without moving the cursor
+vim.keymap.set("n", ",", "<C-e>", { silent = true }) -- Scroll down one line without moving the cursor
 
 -- Search and navigation
 vim.keymap.set("n", "n", "nzzzv")                                                        -- Search next and center cursor in normal mode
@@ -51,11 +53,11 @@ vim.keymap.set("n", "Q", "<nop>") -- Disable 'Q' in normal mode
 vim.keymap.set('n', '<leader>ph', function()
 	local abs_path = vim.fn.expand("%:p:h") -- Get absolute path of current file's directory
 	local file_name = vim.fn.expand("%:t") -- Get current file name
-	local root_path = vim.fn.getcwd()    -- Get current working directory as project root
+	local root_path = vim.fn.getcwd()      -- Get current working directory as project root
 
 	-- Construct relative path from project root to file
 	local rel_path = string.sub(abs_path, string.len(root_path) + 2) -- +2 to remove leading slash
-	local complete_rel_path = rel_path .. '/' .. file_name        -- Complete relative path including file name
+	local complete_rel_path = rel_path .. '/' .. file_name          -- Complete relative path including file name
 
 	-- Copy the relative path to the clipboard
 	vim.cmd('let @* = "' .. complete_rel_path .. '"')
