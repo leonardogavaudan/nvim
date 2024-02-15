@@ -10,8 +10,8 @@ vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)           
 vim.keymap.set("n", "J", "mzJ`z")                    -- Join lines and restore cursor position in normal mode
 vim.keymap.set("n", "<C-d>", "<C-d>zz")              -- Scroll down half a page and center cursor in normal mode
 vim.keymap.set("n", "<C-u>", "<C-u>zz")              -- Scroll up half a page and center cursor in normal mode
-vim.keymap.set("n", ">", "jzz")                      -- Move cursor down one line and center in normal mode
-vim.keymap.set("n", "<", "kzz")                      -- Move cursor up one line and center in normal mode
+vim.keymap.set("n", "<", "jzz")                      -- Move cursor down one line and center in normal mode
+vim.keymap.set("n", ">", "kzz")                      -- Move cursor up one line and center in normal mode
 vim.keymap.set("n", ".", "<C-y>", { silent = true }) -- Scroll up one line without moving the cursor
 vim.keymap.set("n", ",", "<C-e>", { silent = true }) -- Scroll down one line without moving the cursor
 
