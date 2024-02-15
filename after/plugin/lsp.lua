@@ -126,6 +126,8 @@ lspconfig.tsserver.setup({
 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 				includeInlayPropertyDeclarationTypeHints = true,
 				includeInlayVariableTypeHints = true,
+				importModuleSpecifierPreference = 'relative',
+				importModuleSpecifierEnding = 'minimal',
 			},
 		},
 	},
