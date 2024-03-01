@@ -17,6 +17,7 @@ vim.opt.smartindent = true -- Enable smart indent
 -- Search settings
 vim.opt.hlsearch = false -- Disable search highlight
 vim.opt.incsearch = true -- Enable incremental search
+vim.opt.smartcase = true -- Disable case sensitive unless search pattern contains a capital
 
 -- File backup and undo settings
 vim.opt.swapfile = false                               -- Disable swap file creation
@@ -27,4 +28,3 @@ vim.opt.undofile = true                                -- Enable persistent undo
 -- Performance and usability settings
 vim.opt.updatetime = 50       -- Reduce time before the swap file is written to disk
 vim.opt.isfname:append("@-@") -- Allow '@' in filenames
-
