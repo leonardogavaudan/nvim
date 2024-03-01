@@ -70,6 +70,7 @@ lsp_zero.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
 	vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+	vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end, opts)
 end)
 
 -- Finalizing the lsp_zero setup
@@ -84,6 +85,24 @@ vim.diagnostic.config({
 	severity_sort = false,
 	float = true,
 })
+
+local function setup_highlighting(client, bufnr)
+	if client.server_capabilities.documentHighlightProvider then
+		local augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+		vim.api.nvim_create_autocmd("CursorHold", {
+			callback = vim.lsp.buf.document_highlight,
+			buffer = bufnr,
+			group = augroup,
+			desc = "Document Highlight",
+		})
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			callback = vim.lsp.buf.clear_references,
+			buffer = bufnr,
+			group = augroup,
+			desc = "Clear All the References",
+		})
+	end
+end
 
 lspconfig.lua_ls.setup({
 	on_attach = function(client, bufnr)
@@ -104,6 +123,7 @@ lspconfig.lua_ls.setup({
 lspconfig.tsserver.setup({
 	on_attach = function(client, bufnr)
 		lsp_inlayhints.on_attach(client, bufnr)
+		setup_highlighting(client, bufnr)
 	end,
 	settings = {
 		javascript = {
