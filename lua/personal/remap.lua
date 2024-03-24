@@ -2,9 +2,9 @@
 vim.g.mapleader = " "
 
 -- File and buffer operations
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)                                                              -- Execute :Ex in normal mode
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>") -- Edit packer.lua file
-vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)                                      -- Source current file in normal mode
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)                                                          -- Execute :Ex in normal mode
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/personal/packer.lua<CR>") -- Edit packer.lua file
+vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)                                  -- Source current file in normal mode
 
 -- Cursor movement and window scrolling
 vim.keymap.set("n", "J", "mzJ`z")                    -- Join lines and restore cursor position in normal mode
@@ -62,3 +62,8 @@ vim.keymap.set('n', '<leader>ph', function()
 	-- Copy the relative path to the clipboard
 	vim.cmd('let @* = "' .. complete_rel_path .. '"')
 end)
+
+
+vim.api.nvim_set_keymap('n', '<leader>pd',
+	':lua vim.api.nvim_put({string.rep("-", 80)}, "l", true, true)<CR>',
+	{ noremap = true, silent = true })
