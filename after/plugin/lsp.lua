@@ -86,23 +86,6 @@ vim.diagnostic.config({
 	float = true,
 })
 
-local function setup_highlighting(client, bufnr)
-	if client.server_capabilities.documentHighlightProvider then
-		local augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-		vim.api.nvim_create_autocmd("CursorHold", {
-			callback = vim.lsp.buf.document_highlight,
-			buffer = bufnr,
-			group = augroup,
-			desc = "Document Highlight",
-		})
-		vim.api.nvim_create_autocmd("CursorMoved", {
-			callback = vim.lsp.buf.clear_references,
-			buffer = bufnr,
-			group = augroup,
-			desc = "Clear All the References",
-		})
-	end
-end
 
 lspconfig.lua_ls.setup({
 	on_attach = function(client, bufnr)
@@ -119,6 +102,24 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
+
+local function setup_highlighting(client, bufnr)
+	if client.server_capabilities.documentHighlightProvider then
+		local augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+		vim.api.nvim_create_autocmd("CursorHold", {
+			callback = vim.lsp.buf.document_highlight,
+			buffer = bufnr,
+			group = augroup,
+			desc = "Document Highlight",
+		})
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			callback = vim.lsp.buf.clear_references,
+			buffer = bufnr,
+			group = augroup,
+			desc = "Clear All the References",
+		})
+	end
+end
 
 lspconfig.tsserver.setup({
 	on_attach = function(client, bufnr)
