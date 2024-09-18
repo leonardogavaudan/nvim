@@ -5,7 +5,7 @@ return {
 
 		telescope.load_extension("frecency")
 
-		vim.keymap.set("n", "<Leader>ff", function()
+		vim.keymap.set("n", "<Leader>fF", function()
 			telescope.extensions.frecency.frecency({})
 		end)
 	end,
