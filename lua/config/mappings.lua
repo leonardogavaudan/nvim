@@ -55,3 +55,8 @@ end, { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>p", '"_dP', { noremap = true, silent = true })
 -- Delete without changing the register
 vim.keymap.set("v", "<leader>d", '"_d', { noremap = true, silent = true })
+
+-- Change director to current in netrw
+vim.keymap.set("n", "<leader>cd", function()
+	vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
+end)
