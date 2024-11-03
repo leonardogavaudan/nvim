@@ -4,6 +4,7 @@ return {
     local lspconfig = require("lspconfig")
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+    -- LUA
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       settings = {
@@ -25,6 +26,8 @@ return {
         },
       },
     })
+
+    -- PYTHON
     lspconfig.pyright.setup({
       capabilities = capabilities,
       on_attach = function()
@@ -33,7 +36,14 @@ return {
         vim.opt.shiftwidth = 4
       end,
     })
+
+    -- TYPESCRIPT
     lspconfig.ts_ls.setup({
+      capabilities = capabilities,
+    })
+
+    -- C
+    lspconfig.clangd.setup({
       capabilities = capabilities,
     })
   end,
