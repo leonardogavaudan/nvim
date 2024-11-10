@@ -1,20 +1,19 @@
 return {
 	"neovim/nvim-lspconfig",
-	"RRethy/vim-illuminate",
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- Configure vim-illuminate
-		require("illuminate").configure({
-			delay = 100, -- delay in milliseconds before highlighting occurs
-		})
+		-- require("illuminate").configure({
+		-- 	delay = 100, -- delay in milliseconds before highlighting occurs
+		-- })
 
 		-- LUA
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
-				require("illuminate").on_attach(client)
+				-- require("illuminate").on_attach(client)
 			end,
 			settings = { -- Lua settings
 				Lua = {
@@ -40,7 +39,7 @@ return {
 		lspconfig.pyright.setup({
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
-				require("illuminate").on_attach(client)
+				-- require("illuminate").on_attach(client)
 				vim.opt.softtabstop = 4
 				vim.opt.tabstop = 4
 				vim.opt.shiftwidth = 4
@@ -51,7 +50,7 @@ return {
 		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
-				require("illuminate").on_attach(client)
+				-- require("illuminate").on_attach(client)
 			end,
 		})
 
@@ -59,7 +58,7 @@ return {
 		lspconfig.clangd.setup({
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
-				require("illuminate").on_attach(client)
+				-- require("illuminate").on_attach(client)
 			end,
 		})
 	end,
