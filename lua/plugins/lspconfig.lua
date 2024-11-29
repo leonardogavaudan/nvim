@@ -4,18 +4,10 @@ return {
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		-- Configure vim-illuminate
-		-- require("illuminate").configure({
-		-- 	delay = 100, -- delay in milliseconds before highlighting occurs
-		-- })
-
 		-- LUA
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				-- require("illuminate").on_attach(client)
-			end,
-			settings = { -- Lua settings
+			settings = {
 				Lua = {
 					runtime = {
 						version = "LuaJIT",
@@ -31,6 +23,9 @@ return {
 					telemetry = {
 						enable = false,
 					},
+					format = {
+						enable = false,
+					},
 				},
 			},
 		})
@@ -38,28 +33,29 @@ return {
 		-- PYTHON
 		lspconfig.pyright.setup({
 			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				-- require("illuminate").on_attach(client)
-				vim.opt.softtabstop = 4
-				vim.opt.tabstop = 4
-				vim.opt.shiftwidth = 4
-			end,
+			settings = {
+				python = {
+					formatting = {
+						provider = "autopep8", -- Example, use Black or others as needed
+					},
+				},
+			},
 		})
 
 		-- TYPESCRIPT
 		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				-- require("illuminate").on_attach(client)
-			end,
+			settings = {
+				format = {
+					tabSize = vim.opt.tabstop:get(),
+					insertSpaces = vim.opt.expandtab:get(),
+				},
+			},
 		})
 
 		-- C
 		lspconfig.clangd.setup({
 			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				-- require("illuminate").on_attach(client)
-			end,
 		})
 	end,
 }

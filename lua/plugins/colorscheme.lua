@@ -5,6 +5,8 @@ local function set_background()
   highlight NonText guibg=NONE ctermbg=NONE
 ]])
 
+	local test = 1
+
 	-- To make line numbers transparent, you can set LineNr as well
 	vim.cmd([[
   highlight LineNr guibg=NONE ctermbg=NONE

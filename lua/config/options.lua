@@ -8,5 +8,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
--- vim.opt.list = true -- allows the display of invisible characters
--- vim.opt.listchars = { tab = "▸ ", space = "·" }
+vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"
+
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }

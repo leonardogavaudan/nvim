@@ -17,3 +17,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.expandtab = true -- Convert tabs to spaces
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function()
+		vim.lsp.buf.format({ async = false })
+	end,
+})
