@@ -11,4 +11,4 @@ vim.opt.cursorline = true -- Highlight current line
 vim.opt.signcolumn = "yes" -- Always show sign column
 
 vim.opt.list = true -- Show some invisible characters
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Configure invisible characters
+vim.opt.listchars = { tab = "» " } -- Configure invisible characters
