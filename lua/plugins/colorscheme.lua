@@ -1,24 +1,3 @@
-local function set_background()
-  -- Set Normal and NonText groups to transparent
-  vim.cmd([[
-  highlight Normal guibg=NONE ctermbg=NONE
-  highlight NonText guibg=NONE ctermbg=NONE
-]])
-
-  local test = 1
-
-  -- To make line numbers transparent, you can set LineNr as well
-  vim.cmd([[
-  highlight LineNr guibg=NONE ctermbg=NONE
-]])
-
-  -- Optionally, set other elements to transparent if needed
-  vim.cmd([[
-  highlight SignColumn guibg=NONE ctermbg=NONE
-  highlight EndOfBuffer guibg=NONE ctermbg=NONE
-]])
-end
-
 local gruvbox = {
   "luisiacc/gruvbox-baby",
   branch = "main",
@@ -26,7 +5,6 @@ local gruvbox = {
   priority = 1000,
   config = function()
     vim.cmd([[colorscheme gruvbox-baby]])
-    set_background()
   end,
 }
 
@@ -37,7 +15,6 @@ local vscode = {
   priority = 1000,
   config = function()
     vim.cmd([[colorscheme vscode]])
-    set_background()
   end,
 }
 
@@ -49,7 +26,6 @@ local github = {
     require("github-theme").setup({})
     -- vim.cmd("colorscheme github_dark_dimmed")
     vim.cmd("colorscheme github_dark_default")
-    set_background()
   end,
 }
 
@@ -58,7 +34,6 @@ local kanagawa = {
   branch = "master",
   config = function()
     vim.cmd("colorscheme kanagawa")
-    set_background()
   end,
 }
 
