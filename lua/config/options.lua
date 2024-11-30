@@ -12,3 +12,8 @@ vim.opt.signcolumn = "yes" -- Always show sign column
 
 vim.opt.list = true -- Show some invisible characters
 vim.opt.listchars = { tab = "» " } -- Configure invisible characters
+
+vim.opt.ignorecase = true -- Ignore case in search patterns
+vim.opt.smartcase = true -- Override ignorecase if search pattern contains uppercase
+vim.opt.incsearch = true -- Show search matches as you type
+vim.opt.hlsearch = true -- Highlight all matches of the search pattern
