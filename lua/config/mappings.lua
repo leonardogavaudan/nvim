@@ -32,7 +32,6 @@ vim.keymap.set( -- Search and replace current visual selection
   '"hy:%s/<C-r>h//gc<left><left><left>',
   { noremap = true, silent = true, desc = "Search and replace selection" }
 )
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlighting" }) -- Clear search highlighting
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
