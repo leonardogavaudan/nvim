@@ -34,23 +34,14 @@ return {
     lspconfig.pyright.setup({
       capabilities = capabilities,
       settings = {
-        python = {
-          formatting = {
-            provider = "autopep8", -- Example, use Black or others as needed
-          },
-        },
+        python = {},
       },
     })
 
     -- TYPESCRIPT
     lspconfig.ts_ls.setup({
       capabilities = capabilities,
-      settings = {
-        format = {
-          tabSize = vim.opt.tabstop:get(),
-          insertSpaces = vim.opt.expandtab:get(),
-        },
-      },
+      settings = {},
     })
 
     -- C
