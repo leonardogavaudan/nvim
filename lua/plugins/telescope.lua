@@ -19,5 +19,7 @@ return {
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
     vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+    vim.keymap.set("n", "<Leader>ws", builtin.lsp_workspace_symbols, { desc = "Search workspace symbols" })
+    vim.keymap.set("n", "<Leader>ds", builtin.lsp_document_symbols, { desc = "Search document symbols" })
   end,
 }
