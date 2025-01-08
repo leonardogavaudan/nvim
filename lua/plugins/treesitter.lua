@@ -23,6 +23,7 @@ return {
         "yaml",
         "json",
         "dockerfile",
+        "go",
       },
       sync_install = false,
       highlight = { enable = true },

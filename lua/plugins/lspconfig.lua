@@ -48,5 +48,18 @@ return {
     lspconfig.clangd.setup({
       capabilities = capabilities,
     })
+
+    -- GO
+    lspconfig.gopls.setup({
+      capabilities = capabilities,
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    })
   end,
 }

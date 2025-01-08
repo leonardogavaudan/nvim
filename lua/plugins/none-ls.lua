@@ -14,6 +14,9 @@ return {
       null_ls.builtins.formatting.prettier,
       -- PYTHON
       null_ls.builtins.formatting.black,
+      -- GO
+      null_ls.builtins.formatting.gofmt,
+      null_ls.builtins.formatting.goimports,
     }
 
     null_ls.setup({ sources = sources })
