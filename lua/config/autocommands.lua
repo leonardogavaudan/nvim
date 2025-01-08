@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.shiftwidth = 2 -- Indentation uses 2 spaces
     vim.opt.softtabstop = 2 -- Pasting and insert mode use 2 spaces
     vim.opt.expandtab = true -- Convert tabs to spaces
+    vim.opt.list = false -- Hide tabs and other whitespace characters
   end,
 })
 
