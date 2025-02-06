@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	version = false, -- set this if you want to always pull the latest change
 	opts = {
-		provider = "claude",
+		provider = "openrouter",
 		claude = {
 			endpoint = "https://api.anthropic.com",
 			model = "claude-3-5-sonnet-20241022",
@@ -17,6 +17,14 @@ return {
 			timeout = 30000, -- timeout in milliseconds
 			temperature = 0, -- adjust if needed
 			max_tokens = 4096,
+		},
+		vendors = {
+			openrouter = {
+				__inherited_from = "openai",
+				endpoint = "https://openrouter.ai/api/v1",
+				api_key_name = "OPENROUTER_API_KEY",
+				model = "google/gemini-2.0-flash-001",
+			},
 		},
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

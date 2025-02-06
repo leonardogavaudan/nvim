@@ -7,6 +7,10 @@ vim.keymap.set("n", "<leader>t", function()
 		vim.g.ai_provider = "openai"
 		vim.cmd("AvanteSwitchProvider openai")
 		print("Switched AI provider to openai")
+	elseif vim.g.ai_provider == "openai" then
+		vim.g.ai_provider = "openrouter"
+		vim.cmd("AvanteSwitchProvider openrouter")
+		print("Switched AI provider to openrouter")
 	else
 		vim.g.ai_provider = "claude"
 		vim.cmd("AvanteSwitchProvider claude")
