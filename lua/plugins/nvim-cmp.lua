@@ -10,6 +10,9 @@ return {
 			local cmp = require("cmp")
 
 			cmp.setup({
+				completion = {
+					autocomplete = false, -- Disable automatic completion
+				},
 				mapping = {
 					["<C-Space>"] = cmp.mapping.complete(), -- Trigger completion
 					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm selected item
