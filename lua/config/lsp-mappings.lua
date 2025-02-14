@@ -14,4 +14,4 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- Show diagno
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- Jump to previous diagnostic
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- Jump to next diagnostic
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts) -- Add buffer diagnostics to the location list
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts) -- Format current buffer
+-- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts) -- Format current buffer -- ATTENTION now handled by conform
