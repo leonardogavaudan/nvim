@@ -32,7 +32,7 @@ return {
 
 		-- PYTHON
 		-- Ruff for linting
-		require("lspconfig").ruff.setup({
+		lspconfig.ruff.setup({
 			init_options = {
 				settings = {
 					logLevel = "debug",
@@ -47,7 +47,7 @@ return {
 		})
 
 		-- Pyright for type checking and auto-imports
-		require("lspconfig").pyright.setup({
+		lspconfig.pyright.setup({
 			capabilities = capabilities,
 			settings = {
 				python = {
@@ -82,6 +82,16 @@ return {
 						unusedparams = true,
 					},
 					staticcheck = true,
+				},
+			},
+		})
+
+		-- BASH
+		lspconfig.bashls.setup({
+			settings = {
+				bashIde = {
+					shellcheckPath = "shellcheck",
+					enableSourceErrorDiagnostics = true,
 				},
 			},
 		})

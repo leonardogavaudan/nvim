@@ -1,11 +1,11 @@
 return {
-  "williamboman/mason-lspconfig.nvim",
-  branch = "main",
-  config = function()
-    local mason_lspconfig = require("mason-lspconfig")
+	"williamboman/mason-lspconfig.nvim",
+	branch = "main",
+	config = function()
+		local mason_lspconfig = require("mason-lspconfig")
 
-    mason_lspconfig.setup({
-      ensure_installed = { "lua_ls", "pyright", "ruff", "ts_ls", "clangd" },
-    })
-  end,
+		mason_lspconfig.setup({
+			ensure_installed = { "lua_ls", "pyright", "ruff", "ts_ls", "clangd", "bashls", "shellcheck" },
+		})
+	end,
 }
