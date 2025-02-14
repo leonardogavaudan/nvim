@@ -4,10 +4,10 @@ return {
 		local mason = require("mason")
 		mason.setup({
 			ensure_installed = {
-				-- Formatters
 				"black",
 				"ruff",
 				"autopep8",
+				"shfmt",
 			},
 			automatic_installation = true,
 		})
