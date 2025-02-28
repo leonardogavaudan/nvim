@@ -4,16 +4,16 @@ return {
 	lazy = false,
 	version = false, -- set this if you want to always pull the latest change
 	opts = {
-		provider = "openai",
+		provider = "claude",
 		claude = {
 			endpoint = "https://api.anthropic.com",
-			model = "claude-3-5-sonnet-20241022",
+			model = "claude-3-7-sonnet-20250219",
 			temperature = 0,
 			max_tokens = 4096,
 		},
 		openai = {
 			endpoint = "https://api.openai.com/v1",
-			model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+			model = "o3-mini", -- your desired model (or use gpt-4o, etc.)
 			timeout = 30000, -- timeout in milliseconds
 			temperature = 0, -- adjust if needed
 			max_tokens = 4096,
