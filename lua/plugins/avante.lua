@@ -13,9 +13,9 @@ return {
 		},
 		openai = {
 			endpoint = "https://api.openai.com/v1",
-			model = "o3-mini", -- your desired model (or use gpt-4o, etc.)
-			timeout = 30000, -- timeout in milliseconds
-			temperature = 0, -- adjust if needed
+			model = "o3-mini",
+			timeout = 30000,
+			temperature = 0,
 			max_tokens = 4096,
 		},
 		vendors = {
@@ -27,38 +27,49 @@ return {
 			},
 		},
 		rag_service = {
-			enabled = true, -- Enables the rag service, requires OPENAI_API_KEY to be set
+			enabled = true,
+		},
+		file_selector = {
+			provider = function(params)
+				require("telescope.builtin").find_files({
+					hidden = true,
+					search_dirs = params.cwd and { params.cwd } or nil,
+					find_command = { "fd", "--exclude", ".git" },
+					attach_mappings = function(_, map)
+						map("i", "<CR>", function(prompt_bufnr)
+							local selected = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
+							params.handler({ selected.value })
+							require("telescope.actions").close(prompt_bufnr)
+						end)
+						return true
+					end,
+				})
+			end,
 		},
 	},
-	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = "make",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-		--- The below dependencies are optional,
-		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-		"zbirenbaum/copilot.lua", -- for providers='copilot'
+		"nvim-tree/nvim-web-devicons",
+		"zbirenbaum/copilot.lua",
 		{
-			-- support for image pasting
 			"HakonHarnes/img-clip.nvim",
 			event = "VeryLazy",
 			opts = {
-				-- recommended settings
 				default = {
 					embed_image_as_base64 = false,
 					prompt_for_file_name = false,
 					drag_and_drop = {
 						insert_mode = true,
 					},
-					-- required for Windows users
 					use_absolute_path = true,
 				},
 			},
 		},
 		{
-			-- Make sure to set this up properly if you have lazy=true
 			"MeanderingProgrammer/render-markdown.nvim",
 			opts = {
 				file_types = { "Avante" },
