@@ -8,6 +8,7 @@ return {
 				"ruff",
 				"autopep8",
 				"shfmt",
+				"shellcheck",
 			},
 			automatic_installation = true,
 		})

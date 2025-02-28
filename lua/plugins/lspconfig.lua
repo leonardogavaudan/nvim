@@ -63,9 +63,20 @@ return {
 		})
 
 		-- TYPESCRIPT
-		lspconfig.ts_ls.setup({
+
+		lspconfig.vtsls.setup({
 			capabilities = capabilities,
-			settings = {},
+			settings = {
+				vtsls = {
+					enableMoveToFileCodeAction = true,
+				},
+			},
+			commands = {
+				-- Register the custom command handler for move to file refactoring
+				["_typescript.moveToFileRefactoring"] = function(command, ctx)
+					require("config.vtsls-handlers").handle_move_to_file(command, ctx)
+				end,
+			},
 		})
 
 		-- C
