@@ -26,6 +26,9 @@ return {
 				model = "google/gemini-2.0-flash-001",
 			},
 		},
+		rag_service = {
+			enabled = true, -- Enables the rag service, requires OPENAI_API_KEY to be set
+		},
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = "make",
