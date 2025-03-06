@@ -9,6 +9,7 @@ return {
                 "autopep8",
                 "shfmt",
                 "shellcheck",
+                "clang-format",
             },
             automatic_installation = true,
         })
