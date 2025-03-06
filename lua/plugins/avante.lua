@@ -13,7 +13,7 @@ return {
         },
         openai = {
             endpoint = "https://api.openai.com/v1",
-            model = "o3-mini",
+            model = "gpt-4o-2024-05-13",
             timeout = 30000,
             temperature = 0,
             max_tokens = 4096,
@@ -27,7 +27,10 @@ return {
             },
         },
         rag_service = {
-            enabled = true,
+            enabled = false,
+        },
+        web_search_engine = {
+            provider = "google", -- tavily, serpapi, searchapi, google or kagi
         },
         file_selector = {
             provider = function(params)
