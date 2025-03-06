@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "python",
+    pattern = { "python", "lua" },
     callback = function()
         vim.opt.tabstop = 4 -- Tabs appear as 4 spaces
         vim.opt.shiftwidth = 4 -- Indentation uses 4 spaces
