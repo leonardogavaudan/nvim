@@ -23,7 +23,14 @@ return {
                 __inherited_from = "openai",
                 endpoint = "https://openrouter.ai/api/v1",
                 api_key_name = "OPENROUTER_API_KEY",
-                model = "google/gemini-2.0-flash-001",
+                model = "qwen/qwq-32b",
+                disable_tools = true,
+                provider = {
+                    order = { "Groq" },
+                },
+                reasoning = {
+                    exclude = true,
+                },
             },
         },
         rag_service = {
