@@ -10,6 +10,7 @@ return {
                 "shfmt",
                 "shellcheck",
                 "clang-format",
+                "stylua",
             },
             automatic_installation = true,
         })

@@ -13,7 +13,7 @@ return {
         },
         openai = {
             endpoint = "https://api.openai.com/v1",
-            model = "gpt-4o-2024-05-13",
+            model = "gpt-4.1",
             timeout = 30000,
             temperature = 0,
             max_tokens = 4096,
@@ -34,7 +34,12 @@ return {
             },
         },
         rag_service = {
-            enabled = false,
+            enabled = false, -- Enables the RAG service
+            host_mount = os.getenv("HOME"), -- Host mount path for the rag service
+            provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
+            llm_model = "", -- The LLM model to use for RAG service
+            embed_model = "", -- The embedding model to use for RAG service
+            endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
         },
         web_search_engine = {
             provider = "google", -- tavily, serpapi, searchapi, google or kagi
