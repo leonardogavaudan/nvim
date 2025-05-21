@@ -7,7 +7,7 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts) -- List all implemen
 vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts) -- Go to type definition of symbol under cursor
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Show hover information about symbol under cursor
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts) -- Show signature help
-vim.keymap.set("n", "gr", vim.lsp.buf.references, opts) -- List all references to symbol under cursor
+-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts) -- List all references to symbol under cursor
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- Rename symbol under cursor
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts) -- Show code actions available at current cursor position
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- Show diagnostics in floating window
