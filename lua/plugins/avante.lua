@@ -18,23 +18,23 @@ return {
             temperature = 0,
             max_tokens = 4096,
         },
+        aihubmix = {
+            model = "gemini-2.5-flash-preview-05-20",
+        },
         vendors = {
             openrouter = {
                 __inherited_from = "openai",
                 endpoint = "https://openrouter.ai/api/v1",
                 api_key_name = "OPENROUTER_API_KEY",
-                model = "qwen/qwq-32b",
+                model = "google/gemini-2.5-flash-preview-05-20:thinking",
                 disable_tools = true,
-                provider = {
-                    order = { "Groq" },
-                },
                 reasoning = {
                     exclude = true,
                 },
             },
         },
         rag_service = {
-            enabled = false, -- Enables the RAG service
+            enabled = true, -- Enables the RAG service
             host_mount = os.getenv("HOME"), -- Host mount path for the rag service
             provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
             llm_model = "", -- The LLM model to use for RAG service
@@ -44,16 +44,20 @@ return {
         web_search_engine = {
             provider = "google", -- tavily, serpapi, searchapi, google or kagi
         },
-        file_selector = {
-            provider = function(params)
+        selector = {
+            provider = function(selector)
                 require("telescope.builtin").find_files({
+                    prompt_title = selector.title or "Select file",
                     hidden = true,
-                    search_dirs = params.cwd and { params.cwd } or nil,
                     find_command = { "fd", "--exclude", ".git" },
                     attach_mappings = function(_, map)
                         map("i", "<CR>", function(prompt_bufnr)
                             local selected = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
-                            params.handler({ selected.value })
+                            if selected and selector.on_select then
+                                selector.on_select({ selected.value })
+                            else
+                                print("Warning: selector.on_select is nil or no file selected")
+                            end
                             require("telescope.actions").close(prompt_bufnr)
                         end)
                         return true
