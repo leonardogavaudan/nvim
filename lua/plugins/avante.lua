@@ -3,25 +3,22 @@ return {
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
+    --@module 'avante'
+    --@type avant.Config
     opts = {
         provider = "openai",
-        claude = {
-            endpoint = "https://api.anthropic.com",
-            model = "claude-3-7-sonnet-20250219",
-            temperature = 0,
-            max_tokens = 4096,
-        },
-        openai = {
-            endpoint = "https://api.openai.com/v1",
-            model = "gpt-4.1",
-            timeout = 30000,
-            temperature = 0,
-            max_tokens = 4096,
-        },
-        aihubmix = {
-            model = "gemini-2.5-flash-preview-05-20",
-        },
-        vendors = {
+        providers = {
+            claude = {
+                endpoint = "https://api.anthropic.com",
+                model = "claude-3-7-sonnet-20250219",
+            },
+            openai = {
+                endpoint = "https://api.openai.com/v1",
+                model = "o3-2025-04-16",
+            },
+            aihubmix = {
+                model = "gemini-2.5-flash-preview-05-20",
+            },
             openrouter = {
                 __inherited_from = "openai",
                 endpoint = "https://openrouter.ai/api/v1",
@@ -30,6 +27,11 @@ return {
                 disable_tools = true,
                 reasoning = {
                     exclude = true,
+                },
+            },
+            ui = {
+                ask = {
+                    min_height = 3, -- minimum number of lines; adjust as you like
                 },
             },
         },
