@@ -38,6 +38,12 @@ return {
                 },
             },
         },
+        windows = {
+            width = 40,
+            input = {
+                height = 12,
+            },
+        },
         rag_service = {
             enabled = true, -- Enables the RAG service
             host_mount = os.getenv("HOME"), -- Host mount path for the rag service
