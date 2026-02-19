@@ -1,11 +1,10 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        local lspconfig = require("lspconfig")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         -- LUA
-        lspconfig.lua_ls.setup({
+        vim.lsp.config("lua_ls", {
             capabilities = capabilities,
             settings = {
                 Lua = {
@@ -32,7 +31,7 @@ return {
 
         -- PYTHON
         -- Ruff for linting
-        lspconfig.ruff.setup({
+        vim.lsp.config("ruff", {
             init_options = {
                 settings = {
                     logLevel = "debug",
@@ -47,7 +46,7 @@ return {
         })
 
         -- Pyright for type checking and auto-imports
-        lspconfig.pyright.setup({
+        vim.lsp.config("pyright", {
             capabilities = capabilities,
             settings = {
                 python = {
@@ -63,8 +62,7 @@ return {
         })
 
         -- TYPESCRIPT
-
-        lspconfig.vtsls.setup({
+        vim.lsp.config("vtsls", {
             capabilities = capabilities,
             settings = {
                 vtsls = {
@@ -80,12 +78,12 @@ return {
         })
 
         -- C
-        lspconfig.clangd.setup({
+        vim.lsp.config("clangd", {
             capabilities = capabilities,
         })
 
         -- GO
-        lspconfig.gopls.setup({
+        vim.lsp.config("gopls", {
             capabilities = capabilities,
             settings = {
                 gopls = {
@@ -98,7 +96,7 @@ return {
         })
 
         -- BASH
-        lspconfig.bashls.setup({
+        vim.lsp.config("bashls", {
             settings = {
                 bashIde = {
                     shellcheckPath = "shellcheck",
@@ -106,5 +104,7 @@ return {
                 },
             },
         })
+
+        vim.lsp.enable({ "lua_ls", "ruff", "pyright", "vtsls", "clangd", "gopls", "bashls" })
     end,
 }
