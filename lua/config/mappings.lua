@@ -59,6 +59,14 @@ vim.keymap.set( -- Search and replace current visual selection
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<leader>R", "<cmd>checktime<CR>", { desc = "Reload changed file" })
+vim.keymap.set("n", "<leader>rr", function()
+    vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")
+    vim.notify("Neovim config reloaded", vim.log.levels.INFO)
+end, { desc = "Reload Neovim config" })
+vim.keymap.set("n", "<leader>sb", function()
+    require("config.breadcrumbs").open_menu()
+end, { desc = "Open breadcrumbs symbol menu" })
 
 vim.keymap.set("n", "<Leader>wh", function()
     local half_width = math.floor(vim.o.columns / 2)

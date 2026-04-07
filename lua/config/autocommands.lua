@@ -44,3 +44,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
     ]]) -- Clears background on the left side that are not line numbers
     end,
 })
+
+-- Automatically reload files changed outside of Neovim
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    desc = "Auto-reload external file changes",
+    group = vim.api.nvim_create_augroup("auto-reload", { clear = true }),
+    callback = function()
+        if vim.bo.buftype ~= "" then
+            return
+        end
+
+        vim.cmd("checktime")
+    end,
+})

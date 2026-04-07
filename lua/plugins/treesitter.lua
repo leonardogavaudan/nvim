@@ -25,6 +25,7 @@ return {
                 "dockerfile",
                 "go",
                 "bash",
+                "cue",
             },
             sync_install = false,
             highlight = { enable = true },
