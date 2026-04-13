@@ -1,7 +1,7 @@
 local M = {}
 
 local function notify(message, level)
-    vim.notify(message, level or vim.log.levels.INFO, { title = "Worktrees" })
+    vim.notify(message, level or vim.log.levels.INFO, { title = "Projects" })
 end
 
 local function trim(value)
@@ -78,6 +78,24 @@ local function current_git_worktrees()
     return worktrees
 end
 
+local function is_git_repo_root(path)
+    local result = vim.system({ "git", "-C", path, "rev-parse", "--show-toplevel" }, { text = true }):wait()
+
+    if result.code ~= 0 then
+        return false
+    end
+
+    local repo_root = trim(result.stdout)
+    if repo_root == "" then
+        return false
+    end
+
+    local normalized_path = vim.fn.fnamemodify(path, ":p"):gsub("/$", "")
+    local normalized_repo = vim.fn.fnamemodify(repo_root, ":p"):gsub("/$", "")
+
+    return normalized_path == normalized_repo
+end
+
 local function sort_candidates(candidates)
     local current_repo = current_git_repo_name()
 
@@ -131,7 +149,21 @@ local function list_worktrees()
     return candidates
 end
 
-local function open_worktree(path, opts)
+local function list_repos()
+    local candidates = {}
+    local seen = {}
+
+    for _, path in ipairs(list_dirs(vim.fn.expand("~/dev"))) do
+        if vim.fn.fnamemodify(path, ":t") ~= "worktrees" and is_git_repo_root(path) then
+            add_candidate(candidates, seen, path)
+        end
+    end
+
+    sort_candidates(candidates)
+    return candidates
+end
+
+local function open_path(path, opts)
     opts = opts or {}
 
     if opts.new_tab then
@@ -152,7 +184,7 @@ local function open_worktree(path, opts)
     vim.cmd("Oil " .. escaped)
 end
 
-function M.pick()
+local function pick_paths(opts)
     local ok_picker, pickers = pcall(require, "telescope.pickers")
     local ok_finder, finders = pcall(require, "telescope.finders")
     local ok_conf, conf = pcall(require, "telescope.config")
@@ -160,21 +192,21 @@ function M.pick()
     local ok_state, action_state = pcall(require, "telescope.actions.state")
 
     if not (ok_picker and ok_finder and ok_conf and ok_actions and ok_state) then
-        notify("Telescope is required for worktree picking", vim.log.levels.ERROR)
+        notify("Telescope is required for project picking", vim.log.levels.ERROR)
         return
     end
 
-    local worktrees = list_worktrees()
-    if #worktrees == 0 then
-        notify("No worktrees found in ~/dev/worktrees or current git repo", vim.log.levels.WARN)
+    local paths = opts.paths
+    if #paths == 0 then
+        notify(opts.empty_message, vim.log.levels.WARN)
         return
     end
 
     pickers
         .new({}, {
-            prompt_title = "Worktrees (<CR>=open dir, <C-f>=files, <C-t>=new tab)",
+            prompt_title = opts.prompt_title .. " (<CR>=open dir, <C-f>=files, <C-t>=new tab)",
             finder = finders.new_table({
-                results = worktrees,
+                results = paths,
                 entry_maker = function(path)
                     local name = vim.fn.fnamemodify(path, ":t")
                     local display = string.format("%-35s %s", name, abbreviate_home(path))
@@ -188,12 +220,12 @@ function M.pick()
             }),
             sorter = conf.values.generic_sorter({}),
             attach_mappings = function(prompt_bufnr, map)
-                local function select(opts)
+                local function select(selection_opts)
                     local selection = action_state.get_selected_entry()
                     actions.close(prompt_bufnr)
 
                     if selection and selection.value then
-                        open_worktree(selection.value, opts)
+                        open_path(selection.value, selection_opts)
                     end
                 end
 
@@ -219,6 +251,22 @@ function M.pick()
             end,
         })
         :find()
+end
+
+function M.pick()
+    pick_paths({
+        paths = list_worktrees(),
+        prompt_title = "Worktrees",
+        empty_message = "No worktrees found in ~/dev/worktrees or current git repo",
+    })
+end
+
+function M.pick_repos()
+    pick_paths({
+        paths = list_repos(),
+        prompt_title = "Repos in ~/dev",
+        empty_message = "No git repos found directly under ~/dev",
+    })
 end
 
 return M
