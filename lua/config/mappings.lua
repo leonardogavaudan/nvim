@@ -12,6 +12,9 @@ vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>") -- Open netrw file explorer
 vim.keymap.set("n", "<leader>fw", function()
     require("config.worktrees").pick()
 end, { desc = "Pick worktree" })
+vim.keymap.set("n", "<leader>fr", function()
+    require("config.worktrees").pick_repos()
+end, { desc = "Pick repo in ~/dev" })
 vim.keymap.set("n", "<leader>cd", function()
     -- If inside an Oil buffer, use Oil's displayed directory
     if vim.bo.filetype == "oil" then
