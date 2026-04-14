@@ -11,10 +11,19 @@ vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.signcolumn = "yes" -- Always show sign column
 
-vim.opt.list = true -- Show some invisible characters
-vim.opt.listchars = { tab = "» " } -- Configure invisible characters
+vim.opt.list = false -- Do not show invisible characters by default
+vim.opt.listchars = { trail = "·", nbsp = "␣" } -- Configure invisible characters when list is enabled
 
 vim.opt.ignorecase = true -- Ignore case in search patterns
 vim.opt.smartcase = true -- Override ignorecase if search pattern contains uppercase
 vim.opt.incsearch = true -- Show search matches as you type
 vim.opt.hlsearch = true -- Highlight all matches of the search pattern
+
+vim.opt.diffopt = {
+    "internal",
+    "filler",
+    "closeoff",
+    "algorithm:histogram",
+    "indent-heuristic",
+    "linematch:120",
+}
